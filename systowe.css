@@ -57,6 +57,7 @@ table {
 
 /*HERE THE RESET IS FINISHED*/
 
+/*
 ========================================
 
 Grid
@@ -90,7 +91,7 @@ Main Styles
 
 */
 .lato{
-     font-family: 'LatoWeb', sans-serif;
+     font-family: "LatoWeb", sans-serif;
 }
 
 .background{
@@ -120,7 +121,7 @@ Headers
 */
 
 .brand_name {
-    font-family: 'LatoWebMedium', sans-serif;
+    font-family: 'LatoWebThin', sans-serif;
     height:100%;
     background-color: #e6eff2; /* COLOUR LIGHT GRAY */ 
     background-color: white; 
@@ -129,7 +130,7 @@ Headers
 }
 
 .name {
-    font-family: 'LatoWebMedium', sans-serif;
+    font-family: 'LatoWebThin', sans-serif;
     color: #3b473b;
     font-size: 75px;
     height: 75px;
@@ -144,7 +145,7 @@ img.name_pic {
 }
 
 .tagline {
-    font-family: 'LatoWebLight', sans-serif;
+    font-family: 'LatoWebThin', sans-serif;
     font-size: 25px;
     color: #56493B; /* COLOUR DARK GRAY */
     background: #e6eff2;
@@ -279,8 +280,10 @@ ul {
     padding-left: 5px;
 }
 
-.face_pic {
-    width:160px;
+img.face_pic {
+     object-fit: cover;
+    border-radius: 50%;
     height:160px;
+    width: 160px;
     margin: 0px;
 }
