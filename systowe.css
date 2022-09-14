@@ -91,7 +91,7 @@ Main Styles
 
 */
 .lato{
-     font-family: "LatoWeb", sans-serif;
+     font-family: "LatoWebLight", sans-serif;
 }
 
 .background{
@@ -121,7 +121,7 @@ Headers
 */
 
 .brand_name {
-    font-family: 'LatoWebThin', sans-serif;
+    font-family: 'LatoWebLight', sans-serif;
     height:100%;
     background-color: #e6eff2; /* COLOUR LIGHT GRAY */ 
     background-color: white; 
@@ -130,23 +130,21 @@ Headers
 }
 
 .name {
-    font-family: 'LatoWebThin', sans-serif;
+    font-family: 'LatoWebLight', sans-serif;
     color: #3b473b;
-    font-size: 75px;
-    height: 75px;
+    font-size: 72px;
+    height: 72px;
     vertical-align: 7%;
 }
 
 img.name_pic {
     width:65px;
     height:65px;
-    margin-right: 7px;
-
 }
 
 .tagline {
-    font-family: 'LatoWebThin', sans-serif;
-    font-size: 25px;
+    font-family: 'LatoWebLight', sans-serif;
+    font-size: 25.5px;
     color: #56493B; /* COLOUR DARK GRAY */
     background: #e6eff2;
     background-color: white; 
@@ -203,12 +201,20 @@ img.name_pic {
     font-size: 18px;
     color: #56493B; /* COLOUR DARK GRAY */
     display: block;
-    font-style: italic;
     padding-bottom: 5px;
     padding-top: 10px;
     padding-left: 10px;
 }
 
+.about_heading {
+    font-family: 'LatoWebSemibold', sans-serif;
+    font-size: 18px;
+    color: #56493B; /* COLOUR DARK GRAY */
+    display: block;
+    padding-bottom: 5px;
+    padding-top: 10px;
+    padding-left: 0px;
+}
 .pub_year {
     font-family: 'Lato-Black', sans-serif;
     font-size: 18px;
@@ -246,18 +252,22 @@ ul {
 
 .column_a {
   float: left;
-  width: 50%;
-  text-align: center;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  font-size: 15px;
 }
 
 .column_b {
   float: left;
-  width: 50%;
+  width: 60%;
   text-align: left;
-  margin-left: -80px;
+  margin-left: auto;
+  margin-right: auto;
   font-size: 17px;
 }
-.row{
+.about_row{
     width: 100%;
     text-align: center;
     display: flex;
@@ -267,23 +277,122 @@ ul {
     
 }
 
+.contact{
+    padding-top: 2px;
+    text-align: center;
+}
+
+.about_section{
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding-bottom: 80px;
+    padding-top: 40px;
+}
+
 /* Clear floats after the columns */
-.row:after {
+
+img.face_pic {
+    object-fit: cover;
+    border-radius: 50%;
+    height:160px;
+    width: 160px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 15px;
+}
+
+.about_row:after {
   content: "";
   display: table;
   clear: both;
   }
 
-.institute_logo {
-    width: 250px;
-    margin-top: 10px;
-    padding-left: 5px;
+/* Add padding BETWEEN each column (if you want) */
+.row{
+    max-width: 100%;
+    display: flex;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.row > .pf_column {
+  padding: 8px;
+  max-width: 196px;
 }
 
-img.face_pic {
-     object-fit: cover;
-    border-radius: 50%;
-    height:160px;
-    width: 160px;
-    margin: 0px;
+/* Create three equal columns that floats next to each other */
+.pf_column {
+    width: 33.33%;
+    display: none; /* Hide columns by default */
+    justify-content: center;
+}
+
+/* Clear floats after rows */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Content */
+.content {
+  background-color: white;
+  padding: 10px;
+}
+
+/* The "show" class is added to the filtered elements */
+.show {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Style the buttons */
+.btn {
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  background-color: white;
+  font-size: 15px;
+  font-family: "latoWebLight";
+  cursor: pointer;
+}
+
+.btn_container{
+    display: flex;
+    justify-content: center;
+}
+
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.project_blurb{
+    font-size: 15px;
+    font-family: "LatoWebLight";
+    margin-top: 15px;
+    margin-bottom: 30px;
+}
+
+/* Add a grey background color on mouse-over */
+.btn:hover {
+  background-color: #e6eff2;
+}
+
+/* Add a dark background color to the active button */
+.btn.active {
+    background-color: #3b473b;
+    color: white;
+}
+
+.about{
+    font-family: "LatoWebLight";
+    text-align: justify;
+    font-size: 15px; 
+    margin: 0px 2px 8px 0px;
 }
