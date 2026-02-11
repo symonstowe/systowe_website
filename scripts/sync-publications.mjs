@@ -7,15 +7,17 @@ const BIB_PATH = path.join(ROOT, "systowe.bib");
 const INDEX_PATH = path.join(ROOT, "index.html");
 const PDF_DIR = path.join(ROOT, "pdfs");
 
-const CATEGORY_ORDER = ["Publications", "Proceedings", "Patents", "Talks", "Other"];
+const CATEGORY_ORDER = ["Publications", "Proceedings", "Patent Applications", "Talks", "Other"];
 const TYPE_TO_CATEGORY = {
   article: "Publications",
   inproceedings: "Proceedings",
-  patent: "Patents",
+  patent: "Patent Applications",
+  phdthesis: "Publications",
+  mastersthesis: "Publications",
   unpublished: "Talks",
 };
 
-const DROP_FIELDS = new Set(["abstract", "file", "langid", "urldate", "shortjournal", "issue"]);
+const DROP_FIELDS = new Set(["file", "langid", "urldate", "shortjournal", "issue"]);
 
 function parseBib(tex) {
   const entries = [];
@@ -189,6 +191,8 @@ function buildVenue(entry) {
 
   if (entry.type === "patent") {
     const pieces = [];
+    const statusLabel = formatPatentStatus(f.status);
+    if (statusLabel) pieces.push(`Status: ${statusLabel}`);
     if (f.number) pieces.push(f.number);
     if (f.location) pieces.push(f.location);
     if (f.date) pieces.push(f.date);
@@ -202,14 +206,27 @@ function buildVenue(entry) {
   return [f.booktitle || f.journaltitle || f.note || "", f.year || ""].filter(Boolean).join(", ");
 }
 
+function formatPatentStatus(status) {
+  if (!status) return "";
+  const normalized = status.toLowerCase().replace(/[\s-]+/g, "_");
+  const STATUS_LABELS = {
+    published_application: "Published application",
+    granted: "Granted",
+    pending: "Pending",
+    abandoned: "Abandoned",
+  };
+  if (STATUS_LABELS[normalized]) return STATUS_LABELS[normalized];
+  return normalized
+    .split("_")
+    .filter(Boolean)
+    .map((token) => token[0].toUpperCase() + token.slice(1))
+    .join(" ");
+}
+
 function buildLinks(entry) {
   const links = [];
   const seen = new Set();
-  const doi = entry.fields.doi;
-  const url = entry.fields.url;
   const pdfPath = path.join(PDF_DIR, `${entry.key}.pdf`);
-  const doiHref = doi ? `https://doi.org/${doi}` : "";
-  const isDoiUrl = url ? /doi\.org\//i.test(url) : false;
 
   const addLink = (label, href) => {
     if (!href || seen.has(href)) return;
@@ -217,10 +234,52 @@ function buildLinks(entry) {
     links.push({ label, href });
   };
 
+  const addAssetLink = (label, fieldNames) => {
+    for (const fieldName of fieldNames) {
+      const raw = entry.fields[fieldName];
+      if (!raw) continue;
+      if (!looksLikeLink(raw)) continue;
+      addLink(label, normalizeLinkTarget(raw));
+      return;
+    }
+  };
+
+  // Publications: only show a final-draft style asset link.
+  if (entry.type === "article" || entry.type === "phdthesis" || entry.type === "mastersthesis") {
+    addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
+    if (links.length === 0 && fs.existsSync(pdfPath)) {
+      addLink("Final Draft", `pdfs/${entry.key}.pdf`);
+    }
+    return links;
+  }
+
+  // Conference items: abstract + presentation/poster, depending on availability.
+  if (entry.type === "inproceedings") {
+    addAssetLink("Abstract", ["abstract_url", "abstract_link", "abstract_pdf", "abstract"]);
+    addAssetLink("Presentation", ["presentation_url", "presentation_link", "presentation_pdf", "talk_url", "talk_pdf"]);
+    addAssetLink("Poster", ["poster_url", "poster_link", "poster_pdf", "poster"]);
+    if (links.length === 0 && fs.existsSync(pdfPath)) {
+      addLink("Abstract", `pdfs/${entry.key}.pdf`);
+    }
+    return links;
+  }
+
+  // Invited talks: slides only.
+  if (entry.type === "unpublished") {
+    addAssetLink("Slides", ["slides_url", "slides_link", "slides_pdf", "slides"]);
+    if (links.length === 0 && fs.existsSync(pdfPath)) {
+      addLink("Slides", `pdfs/${entry.key}.pdf`);
+    }
+    return links;
+  }
+
+  // Fallback for other entry types.
+  const doi = entry.fields.doi;
+  const url = entry.fields.url;
+  const doiHref = doi ? `https://doi.org/${doi}` : "";
+  const isDoiUrl = url ? /doi\.org\//i.test(url) : false;
   if (url) {
     addLink(isDoiUrl ? "DOI" : "Link", url);
-  } else if (doiHref) {
-    addLink("DOI", doiHref);
   }
   if (url && doiHref && !isDoiUrl) {
     addLink("DOI", doiHref);
@@ -229,6 +288,25 @@ function buildLinks(entry) {
     addLink("PDF", `pdfs/${entry.key}.pdf`);
   }
   return links;
+}
+
+function looksLikeLink(value) {
+  const v = String(value).trim();
+  return (
+    /^https?:\/\//i.test(v) ||
+    /^mailto:/i.test(v) ||
+    /^\.{0,2}\//.test(v) ||
+    /^\//.test(v) ||
+    /\.pdf($|[?#])/i.test(v)
+  );
+}
+
+function normalizeLinkTarget(value) {
+  const v = String(value).trim();
+  if (/^https?:\/\//i.test(v) || /^mailto:/i.test(v) || /^\.{0,2}\//.test(v) || /^\//.test(v)) {
+    return v;
+  }
+  return `pdfs/${v}`;
 }
 
 function generatePublicationHtml(entries) {
