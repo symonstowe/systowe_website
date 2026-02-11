@@ -213,6 +213,16 @@ function buildVenue(entry) {
     return pieces.filter(Boolean).join(", ");
   }
 
+  if (entry.type === "phdthesis" || entry.type === "mastersthesis") {
+    const pieces = [];
+    if (f.school) pieces.push(f.school);
+    if (f.advisor) pieces.push(`Supervisor: ${f.advisor}`);
+    else if (f.supervisor) pieces.push(`Supervisor: ${f.supervisor}`);
+    if (f.year) pieces.push(f.year);
+    else if (f.date) pieces.push(f.date);
+    return pieces.filter(Boolean).join(", ");
+  }
+
   if (entry.type === "unpublished") {
     return f.note || f.year || "";
   }
@@ -394,13 +404,24 @@ function updateIndex(publicationsHtml) {
   const index = fs.readFileSync(INDEX_PATH, "utf8");
   const startMarker = "<!-- PUBS:START -->";
   const endMarker = "<!-- PUBS:END -->";
+  const lastUpdatedMarker = "<!-- LAST_UPDATED -->";
   if (!index.includes(startMarker) || !index.includes(endMarker)) {
     throw new Error("Missing publication markers in index.html");
   }
-  const updated = index.replace(
+  let updated = index.replace(
     new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`),
     `${startMarker}\n${publicationsHtml}\n        ${endMarker}`
   );
+  if (!updated.includes(lastUpdatedMarker)) {
+    throw new Error("Missing last-updated marker in index.html");
+  }
+  const buildDate = new Date().toLocaleString("en-CA", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    timeZone: "UTC",
+  });
+  updated = updated.replace(lastUpdatedMarker, `Site last updated on: ${buildDate} (UTC)`);
   fs.writeFileSync(INDEX_PATH, updated, "utf8");
 }
 
