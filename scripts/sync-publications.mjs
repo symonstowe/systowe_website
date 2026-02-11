@@ -412,16 +412,20 @@ function updateIndex(publicationsHtml) {
     new RegExp(`${startMarker}[\\s\\S]*?${endMarker}`),
     `${startMarker}\n${publicationsHtml}\n        ${endMarker}`
   );
-  if (!updated.includes(lastUpdatedMarker)) {
-    throw new Error("Missing last-updated marker in index.html");
-  }
   const buildDate = new Date().toLocaleString("en-CA", {
     year: "numeric",
     month: "long",
     day: "numeric",
     timeZone: "UTC",
   });
-  updated = updated.replace(lastUpdatedMarker, `Site last updated on: ${buildDate} (UTC)`);
+  const updatedText = `Site last updated on: ${buildDate} (UTC)`;
+  if (updated.includes(lastUpdatedMarker)) {
+    updated = updated.replace(lastUpdatedMarker, updatedText);
+  } else if (/Site last updated on:[^<]*/.test(updated)) {
+    updated = updated.replace(/Site last updated on:[^<]*/g, updatedText);
+  } else {
+    throw new Error("Missing last-updated marker in index.html");
+  }
   fs.writeFileSync(INDEX_PATH, updated, "utf8");
 }
 
