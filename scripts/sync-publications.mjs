@@ -159,11 +159,25 @@ function normalizeAuthorList(authorField) {
   if (!authorField) return "";
   const people = authorField.split(/\s+and\s+/i).map((p) => p.trim()).filter(Boolean);
   const normalized = people.map((person) => {
+    let first = "";
+    let last = "";
     if (person.includes(",")) {
-      const [last, first] = person.split(",").map((s) => s.trim());
-      return `${first} ${last}`.trim();
+      [last, first] = person.split(",").map((s) => s.trim());
+    } else {
+      const tokens = person.split(/\s+/).filter(Boolean);
+      if (tokens.length > 1) {
+        last = tokens[tokens.length - 1];
+        first = tokens.slice(0, -1).join(" ");
+      } else {
+        first = person;
+      }
     }
-    return person;
+    const displayName = `${first} ${last}`.trim() || person;
+    const isSymonStowe =
+      /^stowe$/i.test(last.replace(/[^\p{L}\p{N}.-]/gu, "")) &&
+      (/symon/i.test(first) || /^s(\.|$)/i.test(first.trim()));
+    const safeName = escapeHtml(displayName);
+    return isSymonStowe ? `<strong>${safeName}</strong>` : safeName;
   });
   return normalized.join(", ");
 }
@@ -346,7 +360,7 @@ function generatePublicationHtml(entries) {
         } else {
           lines.push(`  <li><i>${escapeHtml(title)}</i></li>`);
         }
-        if (authors) lines.push(`  <li>${escapeHtml(authors)}</li>`);
+        if (authors) lines.push(`  <li>${authors}</li>`);
         if (venue || linkHtml) lines.push(`  <li>${escapeHtml(venue)} ${linkHtml}</li>`);
         lines.push("</ul>");
       }
