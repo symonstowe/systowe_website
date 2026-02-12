@@ -56,30 +56,30 @@
         </div>
         <h3 class="tagline">Projects and publications of a forward-thinking data scientist</h3>
         <div class="profile_links" aria-label="Professional profiles">
-          <a class="profile_link" href="https://orcid.org/0000-0002-2738-2446" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile">
-            <span class="profile_link_title">ORCID</span>
-            <span class="profile_link_icon"><i class="fa-brands fa-orcid" aria-hidden="true"></i></span>
-            <span class="profile_link_handle">0000-0002-2738-2446</span>
-          </a>
           <a class="profile_link" href="https://github.com/symonstowe" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
             <span class="profile_link_title">GitHub</span>
             <span class="profile_link_icon"><i class="fa-brands fa-github" aria-hidden="true"></i></span>
             <span class="profile_link_handle">@symonstowe</span>
-          </a>
-          <a class="profile_link" href="https://www.linkedin.com/in/symon-stowe/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
-            <span class="profile_link_title">LinkedIn</span>
-            <span class="profile_link_icon"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></span>
-            <span class="profile_link_handle">symon-stowe</span>
           </a>
           <a class="profile_link" href="https://scholar.google.com/citations?user=sVqr_7MAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile">
             <span class="profile_link_title">Google Scholar</span>
             <span class="profile_link_icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></span>
             <span class="profile_link_handle">Symon Stowe</span>
           </a>
+          <a class="profile_link" href="https://orcid.org/0000-0002-2738-2446" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile">
+            <span class="profile_link_title">ORCID</span>
+            <span class="profile_link_icon"><i class="fa-brands fa-orcid" aria-hidden="true"></i></span>
+            <span class="profile_link_handle">0000-0002-2738-2446</span>
+          </a>
           <a class="profile_link" href="https://www.researchgate.net/profile/Symon-Stowe" target="_blank" rel="noopener noreferrer" aria-label="ResearchGate profile">
             <span class="profile_link_title">ResearchGate</span>
             <span class="profile_link_icon"><i class="fa-brands fa-researchgate" aria-hidden="true"></i></span>
             <span class="profile_link_handle">Symon-Stowe</span>
+          </a>
+          <a class="profile_link" href="https://www.linkedin.com/in/symon-stowe/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <span class="profile_link_title">LinkedIn</span>
+            <span class="profile_link_icon"><i class="fa-brands fa-linkedin" aria-hidden="true"></i></span>
+            <span class="profile_link_handle">symon-stowe</span>
           </a>
         </div>
       </div>
@@ -154,23 +154,31 @@
       <h2 class="secondary_heading center">Publications&nbsp;<a
           href="https://scholar.google.com/citations?user=sVqr_7MAAAAJ&hl=en">[Google Scholar]</a></h2>
       <div class="pub_filters" id="pubFilters">
-        <div class="pub_filter_group" id="pubTypeFilters">
-          <button class="pub_filter_btn is-active" data-type="all" type="button">All Types</button>
-          <button class="pub_filter_btn" data-type="thesis" type="button">Thesis</button>
-          <button class="pub_filter_btn" data-type="journal-articles" type="button">Journal Articles</button>
-          <button class="pub_filter_btn" data-type="conference-proceedings" type="button">Conference Proceedings</button>
-          <button class="pub_filter_btn" data-type="guest-lectures" type="button">Guest Lectures</button>
-          <button class="pub_filter_btn" data-type="patent-applications" type="button">Patent Applications</button>
-        </div>
-        <div class="pub_filter_group">
-          <button class="pub_filter_btn is-active" data-author="all" type="button">All Authors</button>
-          <button class="pub_filter_btn" data-author="first" type="button">First Author</button>
-        </div>
-        <div class="pub_filter_year_wrap">
-          <label for="pubYearFilter">Year</label>
-          <select id="pubYearFilter">
+        <div class="pub_filter_dropdown_row">
+          <div class="pub_filter_field">
+            <label for="pubTypeFilter">Publication Type</label>
+            <select id="pubTypeFilter">
+              <option value="all">All types</option>
+              <option value="thesis">Thesis</option>
+              <option value="journal-articles">Journal Articles</option>
+              <option value="conference-proceedings">Conference Proceedings</option>
+              <option value="guest-lectures">Guest Lectures</option>
+              <option value="patent-applications">Patent Applications</option>
+            </select>
+          </div>
+          <div class="pub_filter_field">
+            <label for="pubAuthorFilter">Author Type</label>
+            <select id="pubAuthorFilter">
+              <option value="all">All authors</option>
+              <option value="first">First author</option>
+            </select>
+          </div>
+          <div class="pub_filter_field">
+            <label for="pubYearFilter">Year</label>
+            <select id="pubYearFilter">
             <option value="all">All years</option>
-          </select>
+            </select>
+          </div>
         </div>
       </div>
       <!-- PUBS:START -->
@@ -319,18 +327,9 @@
     }
 
     // Publication filters (type, authorship, and year).
-    var selectedPubType = "all";
-    var selectedPubAuthor = "all";
+    var pubTypeFilter = document.getElementById("pubTypeFilter");
+    var pubAuthorFilter = document.getElementById("pubAuthorFilter");
     var pubYearFilter = document.getElementById("pubYearFilter");
-    var pubTypeButtons = document.querySelectorAll("#pubTypeFilters .pub_filter_btn[data-type]");
-    var pubAuthorButtons = document.querySelectorAll(".pub_filter_btn[data-author]");
-
-    function setActiveButton(buttons, activeButton) {
-      for (var i = 0; i < buttons.length; i++) {
-        buttons[i].classList.remove("is-active");
-      }
-      activeButton.classList.add("is-active");
-    }
 
     function populatePublicationYears() {
       var entries = document.querySelectorAll(".pub_entry");
@@ -348,6 +347,8 @@
     }
 
     function applyPublicationFilters() {
+      var selectedPubType = pubTypeFilter.value;
+      var selectedPubAuthor = pubAuthorFilter.value;
       var selectedYear = pubYearFilter.value;
       var entries = document.querySelectorAll(".pub_entry");
       for (var i = 0; i < entries.length; i++) {
@@ -385,22 +386,8 @@
       }
     }
 
-    for (var t = 0; t < pubTypeButtons.length; t++) {
-      pubTypeButtons[t].addEventListener("click", function () {
-        selectedPubType = this.dataset.type;
-        setActiveButton(pubTypeButtons, this);
-        applyPublicationFilters();
-      });
-    }
-
-    for (var a = 0; a < pubAuthorButtons.length; a++) {
-      pubAuthorButtons[a].addEventListener("click", function () {
-        selectedPubAuthor = this.dataset.author;
-        setActiveButton(pubAuthorButtons, this);
-        applyPublicationFilters();
-      });
-    }
-
+    pubTypeFilter.addEventListener("change", applyPublicationFilters);
+    pubAuthorFilter.addEventListener("change", applyPublicationFilters);
     pubYearFilter.addEventListener("change", applyPublicationFilters);
     populatePublicationYears();
     applyPublicationFilters();
