@@ -7,13 +7,13 @@ const BIB_PATH = path.join(ROOT, "systowe.bib");
 const INDEX_PATH = path.join(ROOT, "index.html");
 const PDF_DIR = path.join(ROOT, "pdfs");
 
-const CATEGORY_ORDER = ["Publications", "Proceedings", "Patent Applications", "Talks", "Other"];
+const CATEGORY_ORDER = ["Thesis", "Publications", "Proceedings", "Patent Applications", "Talks", "Other"];
 const TYPE_TO_CATEGORY = {
   article: "Publications",
   inproceedings: "Proceedings",
   patent: "Patent Applications",
-  phdthesis: "Publications",
-  mastersthesis: "Publications",
+  phdthesis: "Thesis",
+  mastersthesis: "Thesis",
   unpublished: "Talks",
 };
 
@@ -268,6 +268,21 @@ function buildLinks(entry) {
     }
   };
 
+  const addReferenceLinks = () => {
+    const doi = entry.fields.doi;
+    const url = entry.fields.url;
+    const doiHref = doi ? `https://doi.org/${doi}` : "";
+    const isDoiUrl = url ? /doi\.org\//i.test(url) : false;
+    if (url) {
+      addLink(isDoiUrl ? "DOI" : "Link", url);
+    } else if (doiHref) {
+      addLink("DOI", doiHref);
+    }
+    if (url && doiHref && !isDoiUrl) {
+      addLink("DOI", doiHref);
+    }
+  };
+
   // Journal-style publications: only show a final-draft style asset link.
   if (entry.type === "article") {
     addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
@@ -279,6 +294,7 @@ function buildLinks(entry) {
 
   // Thesis entries: final draft plus optional defence presentation.
   if (entry.type === "phdthesis" || entry.type === "mastersthesis") {
+    addReferenceLinks();
     addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
     addAssetLink("Presentation", ["presentation_url", "presentation_link", "presentation_pdf", "slides_url", "slides_link", "slides_pdf"]);
     if (links.length === 0 && fs.existsSync(pdfPath)) {
@@ -308,16 +324,7 @@ function buildLinks(entry) {
   }
 
   // Fallback for other entry types.
-  const doi = entry.fields.doi;
-  const url = entry.fields.url;
-  const doiHref = doi ? `https://doi.org/${doi}` : "";
-  const isDoiUrl = url ? /doi\.org\//i.test(url) : false;
-  if (url) {
-    addLink(isDoiUrl ? "DOI" : "Link", url);
-  }
-  if (url && doiHref && !isDoiUrl) {
-    addLink("DOI", doiHref);
-  }
+  addReferenceLinks();
   if (fs.existsSync(pdfPath)) {
     addLink("PDF", `pdfs/${entry.key}.pdf`);
   }
