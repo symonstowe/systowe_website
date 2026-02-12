@@ -177,7 +177,7 @@ function normalizeAuthorList(authorField) {
       /^stowe$/i.test(last.replace(/[^\p{L}\p{N}.-]/gu, "")) &&
       (/symon/i.test(first) || /^s(\.|$)/i.test(first.trim()));
     const safeName = escapeHtml(displayName);
-    return isSymonStowe ? `<strong>${safeName}</strong>` : safeName;
+    return isSymonStowe ? `<span class="author-highlight">${safeName}</span>` : safeName;
   });
   return normalized.join(", ");
 }
