@@ -161,9 +161,9 @@ Headers
     color: #3b473b;
     font-size: 72px;
     height: 72px;
+    line-height: 72px;
     vertical-align: 7%;
     margin: 0;
-    line-height: 1;
 }
 
 img.name_pic {
@@ -186,22 +186,34 @@ img.name_pic {
 
 .profile_links {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 12px;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    gap: 8px;
     margin-top: -20px;
     margin-bottom: 30px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .profile_link {
     text-decoration: none;
-    color: #06799f;
+    color: #06799f !important;
     border: 1px solid #d8e4ea;
     border-radius: 10px;
-    padding: 12px 8px;
+    padding: 10px 8px;
     text-align: center;
     background: #ffffff;
     transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+    min-width: 132px;
+    flex: 0 0 auto;
+}
+
+.profile_link:link,
+.profile_link:visited,
+.profile_link:hover,
+.profile_link:active {
+    color: #06799f !important;
 }
 
 .profile_link:hover {
@@ -215,7 +227,7 @@ img.name_pic {
     font-family: "LatoWebSemibold", sans-serif;
     font-size: 15px;
     margin-bottom: 4px;
-    color: inherit;
+    color: #06799f !important;
 }
 
 .profile_link_icon {
@@ -223,7 +235,7 @@ img.name_pic {
     font-family: "LatoWebSemibold", sans-serif;
     font-size: 22px;
     line-height: 1.1;
-    color: inherit;
+    color: #06799f !important;
     margin-bottom: 2px;
 }
 
@@ -231,11 +243,11 @@ img.name_pic {
     display: block;
     font-family: "LatoWebLight", sans-serif;
     font-size: 12px;
-    color: inherit;
+    color: #06799f !important;
 }
 
 .profile_link i {
-    color: inherit;
+    color: #06799f !important;
 }
 
 .main_page {
@@ -348,40 +360,37 @@ img.name_pic {
 }
 
 .pub_filters {
-    border: 0;
-    border-radius: 0;
     padding: 0;
     margin: 4px 0 16px 0;
-    background: transparent;
 }
 
 .pub_filter_group {
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    margin-bottom: 6px;
+    gap: 8px;
+    margin-bottom: 8px;
 }
 
 .pub_filter_btn {
-    border: 1px solid #d8e4ea;
-    background: transparent;
-    color: #56493B;
-    border-radius: 999px;
-    padding: 4px 10px;
+    border: none;
+    outline: none;
+    padding: 12px 16px;
+    background-color: white;
+    color: #3b473b;
+    border-radius: 0;
     font-family: "LatoWebLight", sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     cursor: pointer;
 }
 
 .pub_filter_btn:hover {
-    border-color: #b9cbd4;
+    background-color: #e6eff2;
     color: #3b473b;
 }
 
 .pub_filter_btn.is-active {
-    background: #f3f7f9;
-    color: #06799f;
-    border-color: #cfe0e8;
+    background-color: #3b473b;
+    color: white;
 }
 
 .pub_filter_year_wrap {
