@@ -57,6 +57,13 @@ table {
 
 /*HERE THE RESET IS FINISHED*/
 
+/* Restore semantic emphasis after reset */
+strong,
+b {
+  font-family: "LatoWebSemibold", "LatoWebBold", "Lato", sans-serif;
+  font-weight: 700;
+}
+
 /*
 ========================================
 

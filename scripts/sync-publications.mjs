@@ -268,9 +268,19 @@ function buildLinks(entry) {
     }
   };
 
-  // Publications: only show a final-draft style asset link.
-  if (entry.type === "article" || entry.type === "phdthesis" || entry.type === "mastersthesis") {
+  // Journal-style publications: only show a final-draft style asset link.
+  if (entry.type === "article") {
     addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
+    if (links.length === 0 && fs.existsSync(pdfPath)) {
+      addLink("Final Draft", `pdfs/${entry.key}.pdf`);
+    }
+    return links;
+  }
+
+  // Thesis entries: final draft plus optional defence presentation.
+  if (entry.type === "phdthesis" || entry.type === "mastersthesis") {
+    addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
+    addAssetLink("Presentation", ["presentation_url", "presentation_link", "presentation_pdf", "slides_url", "slides_link", "slides_pdf"]);
     if (links.length === 0 && fs.existsSync(pdfPath)) {
       addLink("Final Draft", `pdfs/${entry.key}.pdf`);
     }
