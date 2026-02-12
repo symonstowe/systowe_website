@@ -60,8 +60,9 @@ table {
 /* Restore semantic emphasis after reset */
 strong,
 b {
-  font-family: "LatoWebSemibold", "Lato", sans-serif;
-  font-weight: 600;
+  font-family: "LatoWeb", "Lato", sans-serif;
+  font-weight: normal;
+  color: #3b473b;
 }
 
 /*

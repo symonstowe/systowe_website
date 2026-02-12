@@ -294,7 +294,13 @@ function buildLinks(entry) {
 
   // Thesis entries: final draft plus optional defence presentation.
   if (entry.type === "phdthesis" || entry.type === "mastersthesis") {
-    addReferenceLinks();
+    const thesisDoi = entry.fields.doi;
+    const thesisUrl = entry.fields.url;
+    if (thesisDoi) {
+      addLink("DOI", `https://doi.org/${thesisDoi}`);
+    } else if (thesisUrl) {
+      addLink("Link", thesisUrl);
+    }
     addAssetLink("Final Draft", ["final_draft", "final_draft_url", "paper_pdf", "paper_url", "pdf"]);
     addAssetLink("Presentation", ["presentation_url", "presentation_link", "presentation_pdf", "slides_url", "slides_link", "slides_pdf"]);
     if (links.length === 0 && fs.existsSync(pdfPath)) {
