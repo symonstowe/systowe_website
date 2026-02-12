@@ -53,6 +53,28 @@
           <h1 class="name">Symon Stowe, PhD</h1>
         </div>
         <h3 class="tagline">Projects and publications of a forward-thinking data scientist</h3>
+        <div class="profile_links" aria-label="Professional profiles">
+          <a class="profile_link" href="https://orcid.org/0000-0002-2738-2446" target="_blank" rel="noopener noreferrer" aria-label="ORCID profile">
+            <span class="profile_link_title">ORCID</span>
+            <span class="profile_link_icon">iD</span>
+            <span class="profile_link_handle">0000-0002-2738-2446</span>
+          </a>
+          <a class="profile_link" href="https://github.com/symonstowe" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+            <span class="profile_link_title">GitHub</span>
+            <span class="profile_link_icon">GH</span>
+            <span class="profile_link_handle">@symonstowe</span>
+          </a>
+          <a class="profile_link" href="https://www.linkedin.com/in/symon-stowe/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile">
+            <span class="profile_link_title">LinkedIn</span>
+            <span class="profile_link_icon">in</span>
+            <span class="profile_link_handle">symon-stowe</span>
+          </a>
+          <a class="profile_link" href="https://scholar.google.com/citations?user=sVqr_7MAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" aria-label="Google Scholar profile">
+            <span class="profile_link_title">Google Scholar</span>
+            <span class="profile_link_icon">GS</span>
+            <span class="profile_link_handle">Symon Stowe</span>
+          </a>
+        </div>
       </div>
       <div class="about_section">
         <div class="column_a"><img class="face_pic" src="imgs/photo_for_public.jpg">
@@ -124,122 +146,112 @@
 
       <h2 class="secondary_heading center">Publications&nbsp;<a
           href="https://scholar.google.com/citations?user=sVqr_7MAAAAJ&hl=en">[Google Scholar]</a></h2>
+      <div class="pub_filters" id="pubFilters">
+        <div class="pub_filter_group" id="pubTypeFilters">
+          <button class="pub_filter_btn is-active" data-type="all" type="button">All Types</button>
+          <button class="pub_filter_btn" data-type="thesis" type="button">Thesis</button>
+          <button class="pub_filter_btn" data-type="journal-articles" type="button">Journal Articles</button>
+          <button class="pub_filter_btn" data-type="conference-proceedings" type="button">Conference Proceedings</button>
+          <button class="pub_filter_btn" data-type="guest-lectures" type="button">Guest Lectures</button>
+          <button class="pub_filter_btn" data-type="patent-applications" type="button">Patent Applications</button>
+        </div>
+        <div class="pub_filter_group">
+          <button class="pub_filter_btn is-active" data-author="all" type="button">All Authors</button>
+          <button class="pub_filter_btn" data-author="first" type="button">First Author</button>
+        </div>
+        <div class="pub_filter_year_wrap">
+          <label for="pubYearFilter">Year</label>
+          <select id="pubYearFilter">
+            <option value="all">All years</option>
+          </select>
+        </div>
+      </div>
       <!-- PUBS:START -->
+<div id="publicationsList" class="publications_list">
 <h3 class="pub_year">2023</h3>
-<h4 class="pub_type">Publications</h4>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.1152/ajplung.00180.2023"><i>Three-dimensional electrical impedance tomography to study regional ventilation/perfusion ratios in anesthetized pigs</i></a></li>
-  <li>Shannon Larrabee, Sarah Nugen, Alejandro Bruhn, Ian Porter, <span class="author-highlight">Symon Stowe</span>, Andy Adler, Manuel Martin-Flores, Joaquin Araos</li>
-  <li>American Journal of Physiology-Lung Cellular and Molecular Physiology, 325(5), L638--L646 </li>
-</ul>
-<h4 class="pub_type">Proceedings</h4>
-<ul class="project_blurb">
-  <li><i>V/Q analysis with 3D EIT</i></li>
-  <li>J Araos, <span class="author-highlight">Symon Stowe</span>, Andy Adler</li>
-  <li>Conference on Biomedical Applications of Electrical Impedance Tomography (EIT), 2023, pp. 25 </li>
-</ul>
+<h4 class="pub_type" data-pub-category="journal-articles">Journal Articles</h4>
+<article class="pub_entry" data-type="journal-articles" data-year="2023" data-first-author="0">
+  <p class="pub_citation">S. Larrabee, S. Nugen, A. Bruhn, I. Porter, <span class="author-highlight">S. Stowe</span>, A. Adler, M. Martin-Flores, J. Araos, “<a href="https://doi.org/10.1152/ajplung.00180.2023"><i>Three-dimensional electrical impedance tomography to study regional ventilation/perfusion ratios in anesthetized pigs</i></a>”, American Journal of Physiology-Lung Cellular and Molecular Physiology, 325(5), L638--L646 (2023).</p>
+</article>
+<h4 class="pub_type" data-pub-category="conference-proceedings">Conference Proceedings</h4>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2023" data-first-author="0">
+  <p class="pub_citation">J. Araos, <span class="author-highlight">S. Stowe</span>, A. Adler, “<i>V/Q analysis with 3D EIT</i>”, Conference on Biomedical Applications of Electrical Impedance Tomography (EIT), 2023, pp. 25.</p>
+</article>
 <h3 class="pub_year">2022</h3>
-<h4 class="pub_type">Publications</h4>
-<ul class="project_blurb">
-  <li><a href="https://www.sciencedirect.com/science/article/pii/S156990482200026X"><i>Conventional vs High-Frequency Ventilation for Weaning from Total Liquid Ventilation in Lambs</i></a></li>
-  <li>Christophe Morin, <span class="author-highlight">Symon Stowe</span>, Charles Alain, Wendy See, Michaël Sage, Charlène Nadeau, Nathalie Samson, Andy Adler, Philippe Micheau, Jean-Paul Praud, Étienne Fortin-Pellerin</li>
-  <li>Respiratory Physiology &amp; Neurobiology, 299, 103867 </li>
-</ul>
-<h4 class="pub_type">Patent Applications</h4>
-<ul class="project_blurb">
-  <li><a href="https://patents.google.com/patent/US20220409293A1/en"><i>Impedance-based characterization of intracardiac structure</i></a></li>
-  <li>Shlomo Ben-Haim, Andy Adler, <span class="author-highlight">Symon Stowe</span></li>
-  <li>Status: Published application, US20220409293A1, WIPO, 2022-12-29 <a href="https://patents.google.com/patent/US20220409293A1/en">[Link]</a></li>
-</ul>
+<h4 class="pub_type" data-pub-category="journal-articles">Journal Articles</h4>
+<article class="pub_entry" data-type="journal-articles" data-year="2022" data-first-author="0">
+  <p class="pub_citation">C. Morin, <span class="author-highlight">S. Stowe</span>, C. Alain, W. See, M. Sage, C. Nadeau, N. Samson, A. Adler, P. Micheau, J. P. Praud, É. Fortin-Pellerin, “<a href="https://www.sciencedirect.com/science/article/pii/S156990482200026X"><i>Conventional vs High-Frequency Ventilation for Weaning from Total Liquid Ventilation in Lambs</i></a>”, Respiratory Physiology &amp; Neurobiology, 299, 103867 (2022).</p>
+</article>
+<h4 class="pub_type" data-pub-category="patent-applications">Patent Applications</h4>
+<article class="pub_entry" data-type="patent-applications" data-year="2022" data-first-author="0">
+  <p class="pub_citation">S. Ben-Haim, A. Adler, <span class="author-highlight">S. Stowe</span>, “<a href="https://patents.google.com/patent/US20220409293A1/en"><i>Impedance-based characterization of intracardiac structure</i></a>”, Status: Published application, US20220409293A1, WIPO, 2022-12-29.</p>
+  <p class="pub_links"><a href="https://patents.google.com/patent/US20220409293A1/en">[Link]</a></p>
+</article>
 <h3 class="pub_year">2021</h3>
-<h4 class="pub_type">Thesis</h4>
-<ul class="project_blurb">
-  <li><a href="https://hdl.handle.net/20.500.14718/41162"><i>Electrical Impedance Tomography for Perfusion Imaging and Monitoring</i></a></li>
-  <li><span class="author-highlight">Symon G. A. Stowe</span></li>
-  <li>Carleton University, Supervisor: Dr. Andy Adler, 2021 <a href="https://doi.org/10.22215/etd/2021-14684">[DOI]</a> <a href="pdfs/thesis_slides2021.pdf">[Presentation]</a></li>
-</ul>
-<h4 class="pub_type">Publications</h4>
-<ul class="project_blurb">
-  <li><a href="https://www.sciencedirect.com/science/article/pii/S1569904821000513"><i>Air Distribution within the Lungs after Total Liquid Ventilation in a Neonatal Ovine Model</i></a></li>
-  <li>Wendy See, Christophe Morin, Michaël Sage, <span class="author-highlight">Symon Stowe</span>, Catherine Gohier, Stéphanie Nault, Philippe Micheau, Andy Adler, Étienne Fortin-Pellerin</li>
-  <li>Respiratory Physiology &amp; Neurobiology, 290, 103666 </li>
-</ul>
-<ul class="project_blurb">
-  <li><a href="https://www.nature.com/articles/s41598-021-94157-w"><i>Thoracic Weighting of Restrained Subjects during Exhaustion Recovery Causes Loss of Lung Reserve Volume in a Model of Police Arrest</i></a></li>
-  <li>Mark Campbell, Roslyn Dakin, <span class="author-highlight">Symon Stowe</span>, Kira Burton, Brianna Raven, Malitela Mapani, Jeff W. Dawson, Andy Adler</li>
-  <li>Scientific Reports, 11(1), 15166 </li>
-</ul>
-<h4 class="pub_type">Proceedings</h4>
-<ul class="project_blurb">
-  <li><a href="https://opus.hs-furtwangen.de/frontdoor/index/index/docId/7922"><i>Generating Forward Models from CT Images for Ventilation Monitoring in ARDS Patients</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Zhanqi Zhao, Emily Huxter, Huaiwu He, Yun Long, Andy Adler</li>
-  <li>Proceedings of the 21st International Conference on Biomedical Applications of Electrical Impedance Tomography, 2021, pp. 20 </li>
-</ul>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.5281/zenodo.4940249"><i>Using Esophageal Electrodes for Increased Sensitivity to Cardiac-Frequency Impedance Changes</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Nathalie Samson, Charlène Nadeau, Christophe Morin, Jean-Paul Praud, Étienne Fortin-Pellerin, Andy Adler</li>
-  <li>Proceedings of the 21st International Conference on Biomedical Applications of Electrical Impedance Tomography, Galway, Ireland, 2021-06-14, pp. 24 </li>
-</ul>
-<h4 class="pub_type">Talks</h4>
-<ul class="project_blurb">
-  <li><i>Projects and Work of a Carleton University PhD Student</i></li>
-  <li><span class="author-highlight">Symon Stowe</span></li>
-  <li>Invited guest lecture for ECOR 1055 Introduction to Engineering Disciplines, Carleton University, Ottawa, ON, Canada; delivered live in 2019, with pre-recorded course versions shared in 2020 and 2021 <a href="pdfs/seminar-presentation1.pdf">[Slides]</a></li>
-</ul>
+<h4 class="pub_type" data-pub-category="thesis">Thesis</h4>
+<article class="pub_entry" data-type="thesis" data-year="2021" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. G. A. Stowe</span>, “<a href="https://hdl.handle.net/20.500.14718/41162"><i>Electrical Impedance Tomography for Perfusion Imaging and Monitoring</i></a>”, Carleton University, Supervisor: Dr. Andy Adler, 2021.</p>
+  <p class="pub_links"><a href="https://doi.org/10.22215/etd/2021-14684">[DOI]</a> <a href="pdfs/thesis_slides2021.pdf">[Presentation]</a></p>
+</article>
+<h4 class="pub_type" data-pub-category="journal-articles">Journal Articles</h4>
+<article class="pub_entry" data-type="journal-articles" data-year="2021" data-first-author="0">
+  <p class="pub_citation">W. See, C. Morin, M. Sage, <span class="author-highlight">S. Stowe</span>, C. Gohier, S. Nault, P. Micheau, A. Adler, É. Fortin-Pellerin, “<a href="https://www.sciencedirect.com/science/article/pii/S1569904821000513"><i>Air Distribution within the Lungs after Total Liquid Ventilation in a Neonatal Ovine Model</i></a>”, Respiratory Physiology &amp; Neurobiology, 290, 103666 (2021).</p>
+</article>
+<article class="pub_entry" data-type="journal-articles" data-year="2021" data-first-author="0">
+  <p class="pub_citation">M. Campbell, R. Dakin, <span class="author-highlight">S. Stowe</span>, K. Burton, B. Raven, M. Mapani, J. W. Dawson, A. Adler, “<a href="https://www.nature.com/articles/s41598-021-94157-w"><i>Thoracic Weighting of Restrained Subjects during Exhaustion Recovery Causes Loss of Lung Reserve Volume in a Model of Police Arrest</i></a>”, Scientific Reports, 11(1), 15166 (2021).</p>
+</article>
+<h4 class="pub_type" data-pub-category="conference-proceedings">Conference Proceedings</h4>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2021" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, Z. Zhao, E. Huxter, H. He, Y. Long, A. Adler, “<a href="https://opus.hs-furtwangen.de/frontdoor/index/index/docId/7922"><i>Generating Forward Models from CT Images for Ventilation Monitoring in ARDS Patients</i></a>”, Proceedings of the 21st International Conference on Biomedical Applications of Electrical Impedance Tomography, 2021, pp. 20.</p>
+</article>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2021" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, N. Samson, C. Nadeau, C. Morin, J. P. Praud, É. Fortin-Pellerin, A. Adler, “<a href="https://doi.org/10.5281/zenodo.4940249"><i>Using Esophageal Electrodes for Increased Sensitivity to Cardiac-Frequency Impedance Changes</i></a>”, Proceedings of the 21st International Conference on Biomedical Applications of Electrical Impedance Tomography, Galway, Ireland, 2021-06-14, pp. 24.</p>
+</article>
+<h4 class="pub_type" data-pub-category="guest-lectures">Guest Lectures</h4>
+<article class="pub_entry" data-type="guest-lectures" data-year="2021" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, “<i>Projects and Work of a Carleton University PhD Student</i>”, Invited guest lecture for ECOR 1055 Introduction to Engineering Disciplines, Carleton University, Ottawa, ON, Canada; delivered live in 2019, with pre-recorded course versions shared in 2020 and 2021.</p>
+  <p class="pub_links"><a href="pdfs/seminar-presentation1.pdf">[Slides]</a></p>
+</article>
 <h3 class="pub_year">2020</h3>
-<h4 class="pub_type">Proceedings</h4>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.1109/EMBC44109.2020.9176681"><i>The Effect of Internal Electrodes on Electrical Impedance Tomography Sensitivity</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Andy Adler</li>
-  <li>2020 42nd Annual International Conference of the IEEE Engineering in Medicine Biology Society (EMBC), 2020-07, pp. 1457--1460 </li>
-</ul>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.1109/EMBC44109.2020.9175480"><i>Using Electrical Impedance Tomography in an Experimental Model of Weighted Restraint</i></a></li>
-  <li>Mark Campbell, Malitela Mapani, <span class="author-highlight">Symon Stowe</span>, Jeff W. Dawson, Andy Adler</li>
-  <li>2020 42nd Annual International Conference of the IEEE Engineering in Medicine &amp; Biology Society (EMBC), 2020, pp. 1461--1464 </li>
-</ul>
-<h4 class="pub_type">Talks</h4>
-<ul class="project_blurb">
-  <li><i>Pulmonary Function and Instrumentation</i></li>
-  <li><span class="author-highlight">Symon Stowe</span></li>
-  <li>Guest lecture for SYSC 4203 Bioinstrumentation and Signals, Carleton University, Ottawa, ON, Canada </li>
-</ul>
+<h4 class="pub_type" data-pub-category="conference-proceedings">Conference Proceedings</h4>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2020" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, A. Adler, “<a href="https://doi.org/10.1109/EMBC44109.2020.9176681"><i>The Effect of Internal Electrodes on Electrical Impedance Tomography Sensitivity</i></a>”, 2020 42nd Annual International Conference of the IEEE Engineering in Medicine Biology Society (EMBC), 2020-07, pp. 1457--1460.</p>
+</article>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2020" data-first-author="0">
+  <p class="pub_citation">M. Campbell, M. Mapani, <span class="author-highlight">S. Stowe</span>, J. W. Dawson, A. Adler, “<a href="https://doi.org/10.1109/EMBC44109.2020.9175480"><i>Using Electrical Impedance Tomography in an Experimental Model of Weighted Restraint</i></a>”, 2020 42nd Annual International Conference of the IEEE Engineering in Medicine &amp; Biology Society (EMBC), 2020, pp. 1461--1464.</p>
+</article>
+<h4 class="pub_type" data-pub-category="guest-lectures">Guest Lectures</h4>
+<article class="pub_entry" data-type="guest-lectures" data-year="2020" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, “<i>Pulmonary Function and Instrumentation</i>”, Guest lecture for SYSC 4203 Bioinstrumentation and Signals, Carleton University, Ottawa, ON, Canada (2020).</p>
+</article>
 <h3 class="pub_year">2019</h3>
-<h4 class="pub_type">Publications</h4>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.1088/1361-6579/ab1794"><i>Comparison of Bolus- and Filtering-Based EIT Measures of Lung Perfusion in an Animal Model</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Alistair Boyle, Michaël Sage, Wendy See, Jean-Paul Praud, Étienne Fortin-Pellerin, Andy Adler</li>
-  <li>Physiological Measurement, 40(5), 054002 <a href="pdfs/stowe2019a-perfusion.pdf">[Final Draft]</a></li>
-</ul>
-<h4 class="pub_type">Proceedings</h4>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.5281/zenodo.2691705"><i>Monitoring Regional Lung Volumes during Weighted Restraint</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Mark Campbell, Jeff Dawson, Andy Adler</li>
-  <li>20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 52 </li>
-</ul>
-<ul class="project_blurb">
-  <li><a href="https://zenodo.org/records/2691705"><i>Propagation of Measurement Noise into Images</i></a></li>
-  <li>Alistair Boyle, <span class="author-highlight">Symon Stowe</span>, Sreeraman Rajan, Andy Adler</li>
-  <li>20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 1 <a href="pdfs/boyle2019a.pdf">[Abstract]</a> <a href="pdfs/boyle2019a-presentation.pdf">[Presentation]</a></li>
-</ul>
-<ul class="project_blurb">
-  <li><a href="https://doi.org/10.5281/zenodo.2691705"><i>Software to Automate Functional Analysis of Reconstructed EIT Data</i></a></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Martina Mosing, Andy Adler</li>
-  <li>20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 65 </li>
-</ul>
+<h4 class="pub_type" data-pub-category="journal-articles">Journal Articles</h4>
+<article class="pub_entry" data-type="journal-articles" data-year="2019" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, A. Boyle, M. Sage, W. See, J. P. Praud, É. Fortin-Pellerin, A. Adler, “<a href="https://doi.org/10.1088/1361-6579/ab1794"><i>Comparison of Bolus- and Filtering-Based EIT Measures of Lung Perfusion in an Animal Model</i></a>”, Physiological Measurement, 40(5), 054002 (2019).</p>
+  <p class="pub_links"><a href="pdfs/stowe2019a-perfusion.pdf">[Final Draft]</a></p>
+</article>
+<h4 class="pub_type" data-pub-category="conference-proceedings">Conference Proceedings</h4>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2019" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, M. Campbell, J. Dawson, A. Adler, “<a href="https://doi.org/10.5281/zenodo.2691705"><i>Monitoring Regional Lung Volumes during Weighted Restraint</i></a>”, 20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 52.</p>
+</article>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2019" data-first-author="0">
+  <p class="pub_citation">A. Boyle, <span class="author-highlight">S. Stowe</span>, S. Rajan, A. Adler, “<a href="https://zenodo.org/records/2691705"><i>Propagation of Measurement Noise into Images</i></a>”, 20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 1.</p>
+  <p class="pub_links"><a href="pdfs/boyle2019a.pdf">[Abstract]</a> <a href="pdfs/boyle2019a-presentation.pdf">[Presentation]</a></p>
+</article>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2019" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, M. Mosing, A. Adler, “<a href="https://doi.org/10.5281/zenodo.2691705"><i>Software to Automate Functional Analysis of Reconstructed EIT Data</i></a>”, 20th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2019), London, UK, 2019-07-03, pp. 65.</p>
+</article>
 <h3 class="pub_year">2018</h3>
-<h4 class="pub_type">Publications</h4>
-<ul class="project_blurb">
-  <li><a href="https://www.frontiersin.org/article/10.3389/fphys.2018.01723"><i>Perflubron Distribution During Transition From Gas to Total Liquid Ventilation</i></a></li>
-  <li>Michaël Sage, <span class="author-highlight">Symon Stowe</span>, Andy Adler, Claudia Forand-Choinière, Mathieu Nadeau, Claire Berger, Sofia Marouan, Philippe Micheau, Renaud Tissier, Jean-Paul Praud, Étienne Fortin-Pellerin</li>
-  <li>Frontiers in Physiology, 9 </li>
-</ul>
-<h4 class="pub_type">Proceedings</h4>
-<ul class="project_blurb">
-  <li><i>A Comparison of EIT Lung Perfusion Measures</i></li>
-  <li><span class="author-highlight">Symon Stowe</span>, Alistair Boyle, Michaël Sage, Mathieu Nadeau, Jean-Paul Praud, Étienne Fortin-Pellerin, Andy Adler</li>
-  <li>19th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2018), Edinburgh, UK, 2018-06-12, pp. 1 <a href="pdfs/stowe2018a.pdf">[Abstract]</a> <a href="pdfs/stowe2018a-presentation.pdf">[Presentation]</a></li>
-</ul>
+<h4 class="pub_type" data-pub-category="journal-articles">Journal Articles</h4>
+<article class="pub_entry" data-type="journal-articles" data-year="2018" data-first-author="0">
+  <p class="pub_citation">M. Sage, <span class="author-highlight">S. Stowe</span>, A. Adler, C. Forand-Choinière, M. Nadeau, C. Berger, S. Marouan, P. Micheau, R. Tissier, J. P. Praud, É. Fortin-Pellerin, “<a href="https://www.frontiersin.org/article/10.3389/fphys.2018.01723"><i>Perflubron Distribution During Transition From Gas to Total Liquid Ventilation</i></a>”, Frontiers in Physiology, 9 (2018).</p>
+</article>
+<h4 class="pub_type" data-pub-category="conference-proceedings">Conference Proceedings</h4>
+<article class="pub_entry" data-type="conference-proceedings" data-year="2018" data-first-author="1">
+  <p class="pub_citation"><span class="author-highlight">S. Stowe</span>, A. Boyle, M. Sage, M. Nadeau, J. P. Praud, É. Fortin-Pellerin, A. Adler, “<i>A Comparison of EIT Lung Perfusion Measures</i>”, 19th International Conference on Biomedical Applications of Electrical Impedance Tomography (EIT 2018), Edinburgh, UK, 2018-06-12, pp. 1.</p>
+  <p class="pub_links"><a href="pdfs/stowe2018a.pdf">[Abstract]</a> <a href="pdfs/stowe2018a-presentation.pdf">[Presentation]</a></p>
+</article>
+</div>
         <!-- PUBS:END -->
 
       <h1 class="main_heading">Other Projects</h1>
@@ -288,16 +300,103 @@
     }
 
 
-    // Add active class to the current button (highlight it)
+    // Add active class to the current project filter button.
     var btnContainer = document.getElementById("myBtnContainer");
     var btns = btnContainer.getElementsByClassName("btn");
     for (var i = 0; i < btns.length; i++) {
       btns[i].addEventListener("click", function () {
-        var current = document.getElementsByClassName("active");
+        var current = btnContainer.getElementsByClassName("active");
         current[0].className = current[0].className.replace(" active", "");
         this.className += " active";
       });
     }
+
+    // Publication filters (type, authorship, and year).
+    var selectedPubType = "all";
+    var selectedPubAuthor = "all";
+    var pubYearFilter = document.getElementById("pubYearFilter");
+    var pubTypeButtons = document.querySelectorAll("#pubTypeFilters .pub_filter_btn[data-type]");
+    var pubAuthorButtons = document.querySelectorAll(".pub_filter_btn[data-author]");
+
+    function setActiveButton(buttons, activeButton) {
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove("is-active");
+      }
+      activeButton.classList.add("is-active");
+    }
+
+    function populatePublicationYears() {
+      var entries = document.querySelectorAll(".pub_entry");
+      var years = {};
+      for (var i = 0; i < entries.length; i++) {
+        years[entries[i].dataset.year] = true;
+      }
+      var sortedYears = Object.keys(years).sort(function (a, b) { return Number(b) - Number(a); });
+      for (var j = 0; j < sortedYears.length; j++) {
+        var option = document.createElement("option");
+        option.value = sortedYears[j];
+        option.textContent = sortedYears[j];
+        pubYearFilter.appendChild(option);
+      }
+    }
+
+    function applyPublicationFilters() {
+      var selectedYear = pubYearFilter.value;
+      var entries = document.querySelectorAll(".pub_entry");
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        var typeOk = selectedPubType === "all" || entry.dataset.type === selectedPubType;
+        var authorOk = selectedPubAuthor === "all" || entry.dataset.firstAuthor === "1";
+        var yearOk = selectedYear === "all" || entry.dataset.year === selectedYear;
+        entry.style.display = (typeOk && authorOk && yearOk) ? "" : "none";
+      }
+
+      var years = document.querySelectorAll(".pub_year");
+      for (var y = 0; y < years.length; y++) {
+        var yearHeading = years[y];
+        var visibleAfterYear = false;
+        for (var sib = yearHeading.nextElementSibling; sib && !sib.classList.contains("pub_year"); sib = sib.nextElementSibling) {
+          if (sib.classList.contains("pub_entry") && sib.style.display !== "none") {
+            visibleAfterYear = true;
+            break;
+          }
+        }
+        yearHeading.style.display = visibleAfterYear ? "" : "none";
+      }
+
+      var categories = document.querySelectorAll(".pub_type");
+      for (var c = 0; c < categories.length; c++) {
+        var catHeading = categories[c];
+        var hasVisibleEntry = false;
+        for (var next = catHeading.nextElementSibling; next && !next.classList.contains("pub_type") && !next.classList.contains("pub_year"); next = next.nextElementSibling) {
+          if (next.classList.contains("pub_entry") && next.style.display !== "none") {
+            hasVisibleEntry = true;
+            break;
+          }
+        }
+        catHeading.style.display = hasVisibleEntry ? "" : "none";
+      }
+    }
+
+    for (var t = 0; t < pubTypeButtons.length; t++) {
+      pubTypeButtons[t].addEventListener("click", function () {
+        selectedPubType = this.dataset.type;
+        setActiveButton(pubTypeButtons, this);
+        applyPublicationFilters();
+      });
+    }
+
+    for (var a = 0; a < pubAuthorButtons.length; a++) {
+      pubAuthorButtons[a].addEventListener("click", function () {
+        selectedPubAuthor = this.dataset.author;
+        setActiveButton(pubAuthorButtons, this);
+        applyPublicationFilters();
+      });
+    }
+
+    pubYearFilter.addEventListener("change", applyPublicationFilters);
+    populatePublicationYears();
+    applyPublicationFilters();
   </script>
 </body>
 

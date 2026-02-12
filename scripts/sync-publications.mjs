@@ -7,14 +7,14 @@ const BIB_PATH = path.join(ROOT, "systowe.bib");
 const INDEX_PATH = path.join(ROOT, "index.html");
 const PDF_DIR = path.join(ROOT, "pdfs");
 
-const CATEGORY_ORDER = ["Thesis", "Publications", "Proceedings", "Patent Applications", "Talks", "Other"];
+const CATEGORY_ORDER = ["Thesis", "Journal Articles", "Conference Proceedings", "Patent Applications", "Guest Lectures", "Other"];
 const TYPE_TO_CATEGORY = {
-  article: "Publications",
-  inproceedings: "Proceedings",
+  article: "Journal Articles",
+  inproceedings: "Conference Proceedings",
   patent: "Patent Applications",
   phdthesis: "Thesis",
   mastersthesis: "Thesis",
-  unpublished: "Talks",
+  unpublished: "Guest Lectures",
 };
 
 const DROP_FIELDS = new Set(["file", "langid", "urldate", "shortjournal", "issue"]);
@@ -155,31 +155,62 @@ function getYear(entry) {
   return "Unknown";
 }
 
-function normalizeAuthorList(authorField) {
-  if (!authorField) return "";
-  const people = authorField.split(/\s+and\s+/i).map((p) => p.trim()).filter(Boolean);
-  const normalized = people.map((person) => {
-    let first = "";
-    let last = "";
-    if (person.includes(",")) {
-      [last, first] = person.split(",").map((s) => s.trim());
+function parseAuthor(authorRaw) {
+  let first = "";
+  let last = "";
+  const person = authorRaw.trim();
+  if (person.includes(",")) {
+    [last, first] = person.split(",").map((s) => s.trim());
+  } else {
+    const tokens = person.split(/\s+/).filter(Boolean);
+    if (tokens.length > 1) {
+      last = tokens[tokens.length - 1];
+      first = tokens.slice(0, -1).join(" ");
     } else {
-      const tokens = person.split(/\s+/).filter(Boolean);
-      if (tokens.length > 1) {
-        last = tokens[tokens.length - 1];
-        first = tokens.slice(0, -1).join(" ");
-      } else {
-        first = person;
-      }
+      first = person;
     }
-    const displayName = `${first} ${last}`.trim() || person;
-    const isSymonStowe =
-      /^stowe$/i.test(last.replace(/[^\p{L}\p{N}.-]/gu, "")) &&
-      (/symon/i.test(first) || /^s(\.|$)/i.test(first.trim()));
-    const safeName = escapeHtml(displayName);
-    return isSymonStowe ? `<span class="author-highlight">${safeName}</span>` : safeName;
+  }
+  return { first, last, raw: person };
+}
+
+function splitAuthors(authorField) {
+  if (!authorField) return [];
+  return authorField.split(/\s+and\s+/i).map((p) => parseAuthor(p)).filter((p) => p.raw);
+}
+
+function isSymonStowe(author) {
+  const normalizedLast = (author.last || "").replace(/[^\p{L}\p{N}.-]/gu, "");
+  return /^stowe$/i.test(normalizedLast) && (/symon/i.test(author.first) || /^s(\.|$)/i.test(author.first.trim()));
+}
+
+function initialsFromGiven(givenName) {
+  return givenName
+    .split(/[\s-]+/)
+    .filter(Boolean)
+    .map((token) => {
+      const cleaned = token.replace(/[^\p{L}\p{N}.]/gu, "");
+      if (!cleaned) return "";
+      return cleaned.endsWith(".") ? cleaned : `${cleaned[0].toUpperCase()}.`;
+    })
+    .filter(Boolean)
+    .join(" ");
+}
+
+function formatAuthorsForCitation(authorField) {
+  const authors = splitAuthors(authorField);
+  const formatted = authors.map((author) => {
+    const last = author.last ? escapeHtml(author.last) : "";
+    const initials = initialsFromGiven(author.first);
+    const display = [escapeHtml(initials), last].filter(Boolean).join(" ").trim() || escapeHtml(author.raw);
+    return isSymonStowe(author) ? `<span class="author-highlight">${display}</span>` : display;
   });
-  return normalized.join(", ");
+  return formatted.join(", ");
+}
+
+function isFirstAuthor(entry) {
+  const authors = splitAuthors(entry.fields.author);
+  if (authors.length === 0) return false;
+  return isSymonStowe(authors[0]);
 }
 
 function buildVenue(entry) {
@@ -228,6 +259,30 @@ function buildVenue(entry) {
   }
 
   return [f.booktitle || f.journaltitle || f.note || "", f.year || ""].filter(Boolean).join(", ");
+}
+
+function slugifyCategory(name) {
+  return String(name).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+}
+
+function buildCitation(entry) {
+  const authors = formatAuthorsForCitation(entry.fields.author);
+  const title = entry.fields.title || entry.key;
+  const titleLink = entry.fields.url || (entry.fields.doi ? `https://doi.org/${entry.fields.doi}` : "");
+  const titleHtml = titleLink
+    ? `<a href="${escapeHtml(titleLink)}"><i>${escapeHtml(title)}</i></a>`
+    : `<i>${escapeHtml(title)}</i>`;
+  const venue = buildVenue(entry);
+  const year = getYear(entry);
+  const hasYearInVenue = venue && new RegExp(`\\b${year}\\b`).test(venue);
+
+  let citation = "";
+  if (authors) citation += `${authors}, `;
+  citation += `“${titleHtml}”`;
+  if (venue) citation += `, ${escapeHtml(venue)}`;
+  if (year !== "Unknown" && !hasYearInVenue) citation += ` (${escapeHtml(year)})`;
+  citation += ".";
+  return citation;
 }
 
 function formatPatentStatus(status) {
@@ -368,7 +423,7 @@ function generatePublicationHtml(entries) {
   }
 
   const years = [...byYear.keys()].sort((a, b) => Number(b) - Number(a));
-  const lines = [];
+  const lines = ['<div id="publicationsList" class="publications_list">'];
 
   for (const year of years) {
     lines.push(`<h3 class="pub_year">${escapeHtml(year)}</h3>`);
@@ -376,30 +431,24 @@ function generatePublicationHtml(entries) {
     for (const category of CATEGORY_ORDER) {
       const entriesForCategory = byCategory.get(category);
       if (!entriesForCategory || entriesForCategory.length === 0) continue;
-      lines.push(`<h4 class="pub_type">${escapeHtml(category)}</h4>`);
+      const categorySlug = slugifyCategory(category);
+      lines.push(`<h4 class="pub_type" data-pub-category="${escapeHtml(categorySlug)}">${escapeHtml(category)}</h4>`);
 
       entriesForCategory.sort((a, b) => (a.fields.title || "").localeCompare(b.fields.title || ""));
       for (const entry of entriesForCategory) {
-        const title = entry.fields.title || entry.key;
-        const titleLink = entry.fields.url || (entry.fields.doi ? `https://doi.org/${entry.fields.doi}` : "");
-        const authors = normalizeAuthorList(entry.fields.author);
-        const venue = buildVenue(entry);
+        const citation = buildCitation(entry);
         const links = buildLinks(entry);
         const linkHtml = links.map((link) => `<a href="${escapeHtml(link.href)}">[${escapeHtml(link.label)}]</a>`).join(" ");
-
-        lines.push('<ul class="project_blurb">');
-        if (titleLink) {
-          lines.push(`  <li><a href="${escapeHtml(titleLink)}"><i>${escapeHtml(title)}</i></a></li>`);
-        } else {
-          lines.push(`  <li><i>${escapeHtml(title)}</i></li>`);
-        }
-        if (authors) lines.push(`  <li>${authors}</li>`);
-        if (venue || linkHtml) lines.push(`  <li>${escapeHtml(venue)} ${linkHtml}</li>`);
-        lines.push("</ul>");
+        const firstAuthorFlag = isFirstAuthor(entry) ? "1" : "0";
+        lines.push(`<article class="pub_entry" data-type="${escapeHtml(categorySlug)}" data-year="${escapeHtml(year)}" data-first-author="${firstAuthorFlag}">`);
+        lines.push(`  <p class="pub_citation">${citation}</p>`);
+        if (linkHtml) lines.push(`  <p class="pub_links">${linkHtml}</p>`);
+        lines.push("</article>");
       }
     }
   }
 
+  lines.push("</div>");
   return lines.join("\n");
 }
 
