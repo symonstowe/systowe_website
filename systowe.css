@@ -237,7 +237,7 @@ Headers
     font-size: 50px;
     width: 100%;
     display: flex;
-    align-items: baseline;
+    align-items: center;
     justify-content: center;
     flex-wrap: nowrap;
     gap: 10px;
@@ -260,7 +260,7 @@ img.name_pic {
     display: block;
     flex-shrink: 0;
     position: relative;
-    top: -2px;
+    top: 0;
 }
 
 .tagline {
