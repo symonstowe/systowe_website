@@ -260,7 +260,7 @@ img.name_pic {
     display: block;
     flex-shrink: 0;
     position: relative;
-    top: -3px;
+    top: -2px;
 }
 
 .tagline {
@@ -431,7 +431,7 @@ img.name_pic {
     color: #56493B;
     /* COLOUR DARK GRAY */
     display: block;
-    padding-bottom: 5px;
+    padding-bottom: 14px;
     padding-top: 10px;
     padding-left: 0px;
 }
@@ -642,6 +642,29 @@ img.face_pic {
     padding: 10px;
 }
 
+/* Tighten blurb margin when a GitHub link follows it inside a card */
+.content .project_blurb {
+    margin-bottom: 8px;
+}
+
+.project_github_link {
+    display: inline-block;
+    margin-top: 0;
+    font-family: "LatoWebLight", sans-serif;
+    font-size: 12px;
+    color: #06799f !important;
+    text-decoration: none;
+    border: 1px solid #d8e4ea;
+    border-radius: 5px;
+    padding: 3px 9px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project_github_link:hover {
+    border-color: #06799f;
+    box-shadow: 0 3px 8px rgba(6, 121, 159, 0.12);
+}
+
 /* The "show" class is added to the filtered elements */
 .show {
     display: flex;
@@ -650,18 +673,23 @@ img.face_pic {
 
 /* Style the buttons */
 .btn {
-    border: none;
+    border: 1px solid #d8e4ea;
     outline: none;
-    padding: 12px 16px;
+    padding: 8px 16px;
     background-color: white;
-    font-size: 15px;
-    font-family: "latoWebLight";
+    font-size: 14px;
+    font-family: "LatoWebLight", sans-serif;
     cursor: pointer;
+    border-radius: 6px;
+    color: #3b473b;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .btn_container {
     display: flex;
     justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
 }
 
 .center {
@@ -678,13 +706,16 @@ img.face_pic {
 
 /* Add a grey background color on mouse-over */
 .btn:hover {
-    background-color: #e6eff2;
+    border-color: #06799f;
+    box-shadow: 0 4px 12px rgba(6, 121, 159, 0.12);
+    background-color: white;
 }
 
 /* Add a dark background color to the active button */
 .btn.active {
     background-color: #3b473b;
     color: white;
+    border-color: #3b473b;
 }
 
 .about {
@@ -692,6 +723,220 @@ img.face_pic {
     text-align: justify;
     font-size: 15px;
     margin: 0px 2px 8px 0px;
+}
+
+/* ==========================================
+   Employer / Current Employment Section
+   ========================================== */
+
+.employer_section {
+    margin-bottom: 50px;
+}
+
+.employer_card {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.employer_preview {
+    position: relative;
+    flex: 0 0 50%;
+    height: 300px;
+    overflow: hidden;
+    background: #e6eff2;
+    border: 1px solid #d8e4ea;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(6, 121, 159, 0.07);
+}
+
+.employer_iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1200px;
+    height: 900px;
+    border: none;
+    transform: scale(0.375);
+    transform-origin: top left;
+    pointer-events: none;
+}
+
+.employer_iframe_link {
+    position: absolute;
+    inset: 0;
+    display: block;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.employer_details {
+    flex: 1;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.employer_header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.employer_name {
+    font-family: 'LatoWebSemibold', sans-serif;
+    font-size: 20px;
+    color: #3b473b;
+}
+
+.employer_role {
+    font-family: 'LatoWebLight', sans-serif;
+    font-size: 13px;
+    color: #06799f;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.employer_desc {
+    font-family: 'LatoWebLight', sans-serif;
+    font-size: 14px;
+    color: #3b473b;
+    line-height: 1.55;
+}
+
+.employer_pubs {
+    flex: 1;
+}
+
+.employer_pubs_heading {
+    font-family: 'LatoWebSemibold', sans-serif;
+    font-size: 13px;
+    color: #56493B;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.employer_pubs_list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.employer_pubs_list li {
+    font-family: 'LatoWebLight', sans-serif;
+    font-size: 13px;
+    color: #3b473b;
+    padding: 5px 0;
+    border-bottom: 1px solid #eef3f6;
+    line-height: 1.45;
+}
+
+.employer_pubs_list li:last-child {
+    border-bottom: none;
+}
+
+.employer_pubs_placeholder {
+    color: #aaa !important;
+    font-style: italic;
+}
+
+.employer_visit_btn {
+    display: inline-block;
+    align-self: flex-start;
+    font-family: 'LatoWebSemibold', sans-serif;
+    font-size: 13px;
+    color: #06799f !important;
+    text-decoration: none;
+    border: 1px solid #d8e4ea;
+    border-radius: 6px;
+    padding: 6px 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.employer_visit_btn:hover {
+    border-color: #06799f;
+    box-shadow: 0 4px 12px rgba(6, 121, 159, 0.12);
+    transform: translateY(-1px);
+}
+
+@media screen and (max-width: 700px) {
+    .employer_card {
+        flex-direction: column;
+    }
+
+    .employer_preview {
+        flex: none;
+        height: 200px;
+    }
+
+    .employer_iframe {
+        width: 900px;
+        height: 700px;
+        transform: scale(0.42);
+    }
+
+    .employer_details {
+        padding: 0;
+    }
+}
+
+/* ==========================================
+   Mobile layout improvements
+   ========================================== */
+
+@media screen and (max-width: 700px) {
+    /* Side padding so content doesn't touch screen edges */
+    .main_page {
+        padding-top: 40px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    /* Reduce tagline bottom gap */
+    .tagline {
+        padding-bottom: 28px;
+    }
+
+    /* Profile link cards: 2-column grid instead of horizontal scroll */
+    .profile_links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        overflow-x: visible;
+    }
+
+    .profile_link {
+        min-width: 0;
+    }
+
+    /* About section: stack photo above text */
+    .about_section {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 24px;
+        padding-bottom: 40px;
+    }
+
+    .column_a {
+        float: none;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .column_b {
+        float: none;
+        width: 100%;
+        font-size: 15px;
+    }
+
+    /* Project filter buttons: allow wrapping to two rows */
+    .btn_container {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
 }
 
 @media screen and (max-width: 700px) {
