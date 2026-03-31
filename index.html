@@ -113,6 +113,8 @@
               class="employer_iframe"
               loading="lazy"
               sandbox="allow-scripts allow-same-origin"
+              data-preview-width="1200"
+              data-preview-height="900"
             ></iframe>
             <a href="https://momentum.health/" target="_blank" rel="noopener noreferrer" class="employer_iframe_link" aria-label="Open Momentum Health website in new tab"></a>
           </div>
@@ -139,6 +141,7 @@
 
       <div class="btn_container" id="myBtnContainer">
         <button class="btn active" onclick="filterSelection('all')"> Show all</button>
+        <button class="btn" onclick="filterSelection('analytics')"> Analytics</button>
         <button class="btn" onclick="filterSelection('ML')"> Machine Learning</button>
         <button class="btn" onclick="filterSelection('img')">Image Processing</button>
         <button class="btn" onclick="filterSelection('3D')">3D Modelling</button>
@@ -146,6 +149,18 @@
 
       <!-- Portfolio Gallery Grid -->
       <div class="row">
+        <div class="pf_column analytics">
+          <div class="content">
+            <img src="imgs/net_outcomes.png" alt="Net Outcomes NHL analytics website" style="width:100%">
+            <h4><a class="project_title_link" href="net-outcomes.html">Net Outcomes</a></h4>
+            <p class="project_blurb">NHL analytics website with skater, goalie, and team rankings built from public NHL API data.</p>
+            <div class="project_link_row">
+              <a class="project_github_link" href="https://netoutcomes.ca/" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> Website</a>
+              <a class="project_github_link" href="net-outcomes.html"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> Details</a>
+            </div>
+          </div>
+        </div>
+
         <div class="pf_column ML img">
           <div class="content">
             <img src="imgs/lung_segmentation.png" alt="Segmentation Tool" style="width:100%">
@@ -314,7 +329,7 @@
           A slow rebuild of an old motorcycle...
         </li>
       </ul>
-      <p class="project_blurb center">Site last updated on: February 12, 2026 (UTC)</p>
+      <p class="project_blurb center">Site last updated on: March 31, 2026 (UTC)</p>
     </div>
   </div>
   <script>
@@ -428,6 +443,7 @@
     populatePublicationYears();
     applyPublicationFilters();
   </script>
+  <script src="scripts/responsive-previews.js"></script>
 </body>
 
 </html>

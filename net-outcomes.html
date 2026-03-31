@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en-CA">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description"
+    content="Net Outcomes is an NHL analytics project by Symon Stowe focused on player, goalie, and team evaluation using public NHL API data." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <meta name="author" content="Symon Stowe" />
+  <link rel="canonical" href="https://symonstowe.ca/net-outcomes.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="symonstowe.ca" />
+  <meta property="og:title" content="Net Outcomes | NHL analytics project by Symon Stowe" />
+  <meta property="og:description"
+    content="NHL analytics project by Symon Stowe featuring player, goalie, and team evaluation using public NHL API data." />
+  <meta property="og:url" content="https://symonstowe.ca/net-outcomes.html" />
+  <meta property="og:image" content="https://symonstowe.ca/imgs/net_outcomes.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Net Outcomes | NHL analytics project by Symon Stowe" />
+  <meta name="twitter:description"
+    content="NHL analytics project by Symon Stowe featuring player, goalie, and team evaluation using public NHL API data." />
+  <meta name="twitter:image" content="https://symonstowe.ca/imgs/net_outcomes.png" />
+  <link rel="stylesheet" type="text/css" href="latofonts.css">
+  <link rel="stylesheet" type="text/css" href="systowe.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="icon" href="imgs/logo-light.svg">
+  <title>Net Outcomes | NHL analytics project by Symon Stowe</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "name": "Net Outcomes | NHL analytics project by Symon Stowe",
+        "url": "https://symonstowe.ca/net-outcomes.html",
+        "description": "Net Outcomes is an NHL analytics project focused on player, goalie, and team evaluation using public NHL API data.",
+        "primaryImageOfPage": "https://symonstowe.ca/imgs/net_outcomes.png",
+        "about": {
+          "@id": "https://netoutcomes.ca/#website"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Symon Stowe",
+          "url": "https://symonstowe.ca/"
+        },
+        "isPartOf": {
+          "@id": "https://symonstowe.ca/#website"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://netoutcomes.ca/#website",
+        "name": "Net Outcomes",
+        "url": "https://netoutcomes.ca/",
+        "description": "NHL analytics project focused on player, goalie, and team evaluation using public NHL API data.",
+        "creator": {
+          "@type": "Person",
+          "name": "Symon Stowe",
+          "url": "https://symonstowe.ca/"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://symonstowe.ca/#website",
+        "name": "symonstowe.ca",
+        "url": "https://symonstowe.ca/"
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body class="lato background">
+  <div id="container" class="background box">
+    <div class="main_page project_page">
+      <header class="project_page_header">
+        <a href="index.html" class="project_back_link"><i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to
+          symonstowe.ca</a>
+        <div class="brand_name project_brand_name">
+          <img class="name_pic" src="imgs/logo-light.svg" alt="Symon Stowe logo">
+          <p class="project_brand_text">Symon Stowe, PhD</p>
+        </div>
+        <p class="tagline project_page_tagline">Projects and publications of an R&amp;D specialist</p>
+      </header>
+
+      <section class="project_intro">
+        <p class="project_eyebrow">Featured project</p>
+        <h1 class="project_page_title">Net Outcomes</h1>
+        <p class="project_page_subtitle">An NHL analytics project</p>
+        <p class="project_page_copy">Net Outcomes is an NHL analytics project focused on player, goalie, and team
+          evaluation using public NHL API data. The site combines on-ice and personal statistics into interpretable
+          rankings, scorecards, and team-level views designed to be updated throughout the season.</p>
+        <p class="project_page_copy">Metrics are weighted heavily toward the current season, while the previous three
+          seasons are used to assign certainty. All analysis excludes empty-net goals unless otherwise specified, and
+          rankings are scaled based on certainty and stability.</p>
+        <div class="project_action_row">
+          <a href="https://netoutcomes.ca/" target="_blank" rel="noopener noreferrer" class="employer_visit_btn">Visit
+            NetOutcomes.ca &#x2197;</a>
+          <a href="index.html" class="employer_visit_btn">Back to home</a>
+        </div>
+      </section>
+
+      <section class="project_details_section">
+        <h2 class="about_heading">Why I started this project</h2>
+        <p class="project_page_copy">
+          When looking at expected goals (xG) metrics in hockey I felt that there were often some gaps between what the
+          data was showing and what the game outcomes were. A lot of the discrepancy between xG and what I was seeing
+          could be corrected for by removing effects of empty net goals, but more interesting stories started to appear
+          when I started fitting corrections based on situation importance and shot outcomes. I am felt that there were
+          interesting stories in some of the statistics. For example: a certain player might have a great xG
+          differential but every time they step on the ice their goalie performs worse. They may generate a lot of
+          chances - but what are the net outcomes of their time on the ice?
+        </p>
+        <p class="project_page_copy">
+          Some of the questions I was curious to answer with this analysis:
+        </p>
+        <ul class="project_question_list">
+          <li>Can we design lines around specific player strengths and weaknesses to maximize a team&rsquo;s chance of success?</li>
+          <li>Can we pick an optimal setup for a national team based on player metrics?</li>
+          <li>How do our estimates of what the lines &ldquo;should&rdquo; be correspond with actual management and coaching decisions?</li>
+          <li>When a player we feel is underrated and they do get more ice time, does our prediction hold up?</li>
+        </ul>
+      </section>
+
+      <section class="project_showcase">
+        <div class="employer_preview project_preview">
+          <iframe src="https://netoutcomes.ca/" title="Net Outcomes website preview"
+            class="employer_iframe project_iframe" loading="lazy" sandbox="allow-scripts allow-same-origin"
+            data-preview-width="1200" data-preview-height="900"></iframe>
+          <a href="https://netoutcomes.ca/" target="_blank" rel="noopener noreferrer" class="employer_iframe_link"
+            aria-label="Open Net Outcomes website in new tab"></a>
+        </div>
+        <div class="project_showcase_copy">
+          <h2 class="about_heading">What&rsquo;s on the site</h2>
+          <ul class="project_feature_list">
+            <li>Skater rankings</li>
+            <li>Goalie rankings</li>
+            <li>Team rankings</li>
+            <li>Player scorecards</li>
+            <li>Line analysis</li>
+            <li>Team expected-goals visualizations</li>
+          </ul>
+          <div class="project_action_row">
+            <a href="https://netoutcomes.ca/" target="_blank" rel="noopener noreferrer" class="employer_visit_btn">Open
+              live site &#x2197;</a>
+          </div>
+        </div>
+      </section>
+
+      <p class="project_blurb center">Project page last updated on: March 31, 2026 (UTC)</p>
+    </div>
+  </div>
+  <script src="scripts/responsive-previews.js"></script>
+</body>
+
+</html>
